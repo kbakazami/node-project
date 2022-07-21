@@ -1,4 +1,4 @@
-import {signin, signup} from "../controllers/user.controller.js";
+import {signin, signup} from "../controllers/auth.controller.js";
 import verifyRegister from "../middleware/verifyRegister.js";
 
 export default function userRoute (app) {

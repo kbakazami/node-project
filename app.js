@@ -6,7 +6,7 @@ import optionsSwagger from "./config/swagger.config.js";
 import db from "./services/sequelize.js";
 
 // Import Routes
-import userRoute from "./routes/user.route.js";
+import userRoute from "./routes/auth.route.js";
 
 const app = express();
 

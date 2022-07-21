@@ -1,4 +1,4 @@
-import db from "../models/user.model.js";
+import db from "../services/sequelize.js";
 const User = db.user;
 
 export default function verifyRegister(req, res, next) {

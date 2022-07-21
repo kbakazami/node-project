@@ -6,11 +6,6 @@ import swaggerJSDoc from 'swagger-jsdoc';
 
 const User = db.user;
 
-/**
- * @swagger
- * @param {*} req 
- * @param {*} res 
- */
 export function signup(req, res){
 
     User.create({

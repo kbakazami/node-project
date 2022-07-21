@@ -3,11 +3,18 @@ import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
 import specs from "./config/swagger.config.js";
 import db from "./services/sequelize.js";
+import fileUpload from "express-fileupload";
 
 // Import Routes
 import userRoute from "./routes/auth.route.js";
+import uploadRoute from "./routes/upload.route.js";
 
 const app = express();
+
+// Enable file upload
+app.use(fileUpload({
+  createParentPath: true
+}));
 
 // Swagger
 app.use(
@@ -34,10 +41,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to API' });
 });
 
-const message = "Bonjour ceci est un test !"
-
-
 userRoute(app);
+uploadRoute(app);
 
 app.listen(4000, () => {
   console.log("serveur run");

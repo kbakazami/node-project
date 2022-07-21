@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import configSecret from '../config/auth.config.js';
-const db = require('../models');
+import db from "../models/user.model";
 const User = db.user;
 
 const authJwt = (req, res, next) => {

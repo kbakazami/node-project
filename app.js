@@ -5,6 +5,9 @@ import swaggerJSDoc from "swagger-jsdoc";
 import optionsSwagger from "./config/swagger.config.js";
 import db from "./services/sequelize.js";
 
+// Import Routes
+import userRoute from "./routes/user.route.js";
+
 const app = express();
 
 const specs = swaggerJSDoc(optionsSwagger);
@@ -34,6 +37,8 @@ app.use(
   swaggerUiExpress.serve,
   swaggerUiExpress.setup(specs)
 );
+
+userRoute(app);
 
 app.listen(4000, () => {
   console.log("serveur run");

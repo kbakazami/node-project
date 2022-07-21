@@ -1,13 +1,27 @@
 import express from "express";
 import bodyParser from "body-parser";
-import swaggerUiExpress from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
-import optionsSwagger from "./config/config-swagger.js";
-import db from "./services/connexion-bdd.js";
+import swaggerUi from "swagger-ui-express";
+import specs from "./config/swagger.config.js";
+import db from "./services/sequelize.js";
+import fileUpload from "express-fileupload";
+
+// Import Routes
+import userRoute from "./routes/auth.route.js";
+import uploadRoute from "./routes/upload.route.js";
 
 const app = express();
 
-const specs = swaggerJSDoc(optionsSwagger);
+// Enable file upload
+app.use(fileUpload({
+  createParentPath: true
+}));
+
+// Swagger
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
 // parse request of content type: application/json
 app.use(bodyParser.json());
@@ -27,13 +41,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to API' });
 });
 
-const message = "Bonjour ceci est un test !"
-
-app.use(
-  "/api-docs",
-  swaggerUiExpress.serve,
-  swaggerUiExpress.setup(specs)
-);
+userRoute(app);
+uploadRoute(app);
 
 app.listen(4000, () => {
   console.log("serveur run");

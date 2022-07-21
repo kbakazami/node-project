@@ -1,3 +1,4 @@
+
 const seq = (sequelize, Sequelize) => {
   return sequelize.define('user', {
       firstname: {

@@ -1,9 +1,11 @@
+import swaggerJSDoc from "swagger-jsdoc";
+
 const optionsSwagger = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "LogRocket Express API with Swagger",
-      version: "0.1.0",
+      title: "Api Test Node Project",
+      version: "1.0",
       description:
         "This is a simple CRUD API application made with Express and documented with Swagger",
       license: {
@@ -11,18 +13,20 @@ const optionsSwagger = {
         url: "https://spdx.org/licenses/MIT.html",
       },
       contact: {
-        name: "LogRocket",
-        url: "https://logrocket.com",
-        email: "info@email.com",
+        name: "Wyvin Struys",
+        url: "https://www.linkedin.com/in/wivin-struys/",
+        email: "struys.wyvin@gmail.com",
       },
     },
     servers: [
       {
-        url: "http://localhost:3000/books",
+        url: "http://localhost:4000",
       },
     ],
   },
-  apis: ["./routes/books.js"],
+  apis: ["./routes/auth.route.js"],
 };
 
-export default optionsSwagger;
+const specs = swaggerJSDoc(optionsSwagger);
+
+export default specs;

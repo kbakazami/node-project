@@ -1,8 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import swaggerUiExpress from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
-import optionsSwagger from "./config/swagger.config.js";
+import swaggerUi from "swagger-ui-express";
+import specs from "./config/swagger.config.js";
 import db from "./services/sequelize.js";
 
 // Import Routes
@@ -10,7 +9,12 @@ import userRoute from "./routes/auth.route.js";
 
 const app = express();
 
-const specs = swaggerJSDoc(optionsSwagger);
+// Swagger
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
 // parse request of content type: application/json
 app.use(bodyParser.json());
@@ -32,11 +36,6 @@ app.get('/', (req, res) => {
 
 const message = "Bonjour ceci est un test !"
 
-app.use(
-  "/api-docs",
-  swaggerUiExpress.serve,
-  swaggerUiExpress.setup(specs)
-);
 
 userRoute(app);
 

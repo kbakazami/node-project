@@ -1,4 +1,4 @@
-import configDB from "../config/config-db.js"
+import configDB from "../config/db.config.js"
 import Sequelize from "sequelize";
 import seq from "../models/user.model.js"
 

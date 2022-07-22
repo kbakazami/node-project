@@ -2,7 +2,6 @@ import db from '../services/sequelize.js';
 import configSecret from '../config/auth.config.js';
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import swaggerJSDoc from 'swagger-jsdoc';
 
 const User = db.user;
 
